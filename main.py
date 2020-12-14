@@ -1,9 +1,11 @@
 import discord 
 import time
 from discord.ext import commands, tasks
+from bs4 import BeautifulSoup
 from Modules.Help import *
+from Modules.ImageSearch import *
 
-token = "NTQzMDU5MTkyMjE1MjQwNzI1.XFwxSA._u2Xt2-4efj_bfcOTIsxR_9jzWo"
+token = ""
 game = discord.Game("Developing...")
 
 bot = commands.Bot(command_prefix='#')
@@ -32,5 +34,9 @@ async def 모야(ctx):
     Description = help.Create_Moya_description()
     await ctx.send(embed=Description)
     
+@bot.command()
+async def 이미지(ctx, arg):
+    search = Search()
+    await ctx.send(embed=search.Search_Image(arg))
 
 bot.run(token)
