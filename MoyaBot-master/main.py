@@ -12,6 +12,7 @@ from Modules.Help import *
 from Modules.ImageSearch import *
 from Modules.Bitcoin import *
 from Modules.Music import *
+from Modules.papago import *
 
 token = ""
 game = discord.Game("Developing...")
@@ -88,7 +89,7 @@ async def 업비트(ctx, *arg):
     Coinclass = get_coin()
     await ctx.send(embed=Coinclass.get_coin_price(*arg))
 
-@bot.command()
+@bot.command(name='고르기')
 async def 고르기(ctx, *choices):
     choices = [c for c in choices]
     if len(choices) < 2:
@@ -96,12 +97,19 @@ async def 고르기(ctx, *choices):
     else:
         await ctx.send(choice(choices))
 
+@bot.command(name='파파고')
+async def 파파고(ctx, *arg):
+    Papa = PaPago()
+    await ctx.send(Papa.Transalte(ctx,*arg))
 
 
+@bot.command(name="파파문장")
+async def 파파문장(ctx,*arg):
+    Papa = PaPago()
+    await ctx.send(Papa.Sentence_Translate(ctx,*arg))
 ###
 
 bot.add_cog(Music(bot))
-
 
 
 ###
